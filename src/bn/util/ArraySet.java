@@ -84,5 +84,9 @@ public class ArraySet<E> extends AbstractSet<E> {
 			return elements.add(e);
 		}
 	}
+	
+	public ArrayList<E> getElements(){
+		return elements;
+	}
 
 }

@@ -44,7 +44,7 @@ public class Domain extends ArraySet<Value> implements bn.core.Domain {
 		domain.add(red);
 		domain.add(green);
 		domain.add(blue);
-		System.out.println(domain);
+		System.out.println(domain.elements.get(0));
 		Domain booleans = new Domain(BooleanValue.TRUE, BooleanValue.FALSE);
 		System.out.println(booleans);
 	}
