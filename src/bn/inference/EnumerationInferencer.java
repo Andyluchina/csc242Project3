@@ -40,6 +40,7 @@ public class EnumerationInferencer implements Inferencer{
 		}
 		RandomVariable Y = vars.get(0);
 		if(e.containsKey(Y)) {
+			//System.out.println(bn.getProbability(Y, e));
 			return bn.getProbability(Y, e)	* enumerateAll(vars.subList(1, vars.size()), e, bn);
 		}else {
 			double sum = 0;

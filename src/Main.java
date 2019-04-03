@@ -14,7 +14,8 @@ import bn.core.Distribution;
 import bn.core.Inferencer;
 import bn.core.RandomVariable;
 import bn.parser.XMLBIFParser;
-import bn.inference.EnumerationInferencer;
+//import bn.inference.EnumerationInferencer;
+import bn.inference.*;
 
 public class Main {
 
@@ -48,9 +49,12 @@ public class Main {
 //		System.out.println(a);
 //		System.out.println(network);
 //		
-		Inferencer exact = new EnumerationInferencer();
-		Distribution dist = exact.query(QueryVariable, a, network);
-		System.out.println(dist);
+//		Inferencer exact = new EnumerationInferencer();
+//		Distribution dist = exact.query(QueryVariable, a, network);
+//		System.out.println(dist);
+		
+		RejectionSamplingInferencer rej = new RejectionSamplingInferencer();
+		rej.priorSample(network);
 	}
 
 }
