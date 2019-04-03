@@ -12,8 +12,7 @@ import bn.inference.EnumerationInferencer;
 import bn.base.BooleanDomain;
 import bn.base.BooleanValue;
 import bn.base.NamedVariable;
-import bn.util.ArraySet;
-
+import bn.util.ArraySet; 
 /**
  * The AIMA Burglar Alarm example of a BayesianNetwork (AIMA Fig 14.2).
  * <p>

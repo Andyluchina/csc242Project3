@@ -28,7 +28,6 @@ public class EnumerationInferencer implements Inferencer{
 			ex.remove(X);
 		}
 		//this.enumerateAll(bn.getVariablesSortedTopologically(), e, bn);
-		System.out.println(dist);
 		dist.normalize();
 		return dist;
 	
@@ -40,8 +39,6 @@ public class EnumerationInferencer implements Inferencer{
 			return 1.0;
 		}
 		RandomVariable Y = vars.get(0);
-		
-		//System.out.println(Y);
 		if(e.containsKey(Y)) {
 			return bn.getProbability(Y, e)	* enumerateAll(vars.subList(1, vars.size()), e, bn);
 		}else {
