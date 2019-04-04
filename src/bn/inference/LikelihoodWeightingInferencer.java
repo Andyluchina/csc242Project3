@@ -7,21 +7,27 @@ import bn.core.Distribution;
 import bn.core.RandomVariable;
 
 public class LikelihoodWeightingInferencer {
-	
+
 	public Distribution LikelihoodWeighting(RandomVariable X, Assignment e, BayesianNetwork bn, int N) {
 		Distribution dist = new bn.base.Distribution(X);
-		
+
 		for(int j = 0; j < X.getDomain().size(); j++) {
 			Domain domain = (Domain) X.getDomain();
 			dist.put(domain.getElements().get(j), 0.0);
 		}
-		System.out.println(dist);
+		//System.out.println(dist);
 		for(int i = 0; i<N; i++) {
+			double res=0;
 			WeightedAssignment sample = this.weightedSample(bn, e);
-			System.out.println(sample);
+//			sample.event.get(X);
+//			dist.get(sample.event.get(X));
+			res=dist.get(sample.event.get(X))+sample.weight;
+			dist.remove(sample.event.get(X));
+			dist.put(sample.event.get(X), res);
+			//System.out.println(sample);
 		}
-		
-		return null;
+		dist.normalize();
+		return dist;
 	}
 
 
@@ -35,7 +41,7 @@ public class LikelihoodWeightingInferencer {
 			weight = w;
 			event = a;
 		}
-		
+
 		@Override
 		public String toString() {
 			return "" + weight + " " + event;
@@ -58,11 +64,10 @@ public class LikelihoodWeightingInferencer {
 			}
 		}
 		WeightedAssignment ans = new WeightedAssignment(x, weight);
-		System.out.println(ans);
 		return ans;
-		
-		
-		
+
+
+
 	}
 }
 
