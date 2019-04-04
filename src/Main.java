@@ -49,12 +49,12 @@ public class Main {
 //		System.out.println(a);
 //		System.out.println(network);
 //		
-//		Inferencer exact = new EnumerationInferencer();
-//		Distribution dist = exact.query(QueryVariable, a, network);
-//		System.out.println(dist);
+		Inferencer exact = new EnumerationInferencer();
+		Distribution dist = exact.query(QueryVariable, a, network);
+		System.out.println(dist);
 		
 		RejectionSamplingInferencer rej = new RejectionSamplingInferencer();
-		rej.priorSample(network);
+		System.out.println(rej.rejectionSampling(QueryVariable, a, network, 10000000));
 	}
 
 }
