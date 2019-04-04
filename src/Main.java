@@ -66,6 +66,14 @@ public class Main {
 		RejectionSamplingInferencer rej = new RejectionSamplingInferencer();
 		System.out.println(rej.rejectionSampling(QueryVariable, a, network, sampleSize));
 		System.out.println();
+		
+		
+		
+		LikelihoodWeightingInferencer lwi = new LikelihoodWeightingInferencer();
+		lwi.weightedSample(network, a);
+		
+		
+		
 	}
 
 }
