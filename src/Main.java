@@ -26,10 +26,17 @@ public class Main {
 		String prefix = "src/bn/examples/";
 		String filename = prefix+args[0];
 		XMLBIFParser parser = new XMLBIFParser();
+		String sampleSizeS = args[1];
+		int sampleSize = 1000;
+		if(sampleSizeS.equals("-")) {
+			sampleSize=1000;
+		}else {
+			sampleSize = Integer.parseInt(sampleSizeS);
+		}
 		BayesianNetwork network = parser.readNetworkFromFile(filename);
 		 //= new NamedVariable(args[1], new BooleanDomain());
 		Assignment a=new bn.base.Assignment();
-		for(int i =2; i<args.length; i+=2) {
+		for(int i =3; i<args.length; i+=2) {
 			RandomVariable evidence = network.getVariableByName(args[i]);
 			if(args[i+1].equals("true")) {
 				a.put(evidence, new StringValue("true"));
@@ -38,8 +45,8 @@ public class Main {
 			}
 			//System.out.println(args[i+1].equals("true"));
 		}
-
-		RandomVariable QueryVariable=network.getVariableByName(args[1]);
+		// java -cp ".\bin\" Main aima-wet-grass.xml - C S true
+		RandomVariable QueryVariable=network.getVariableByName(args[2]);
 		//new NamedVariable(args[1], new BooleanDomain())
 		//network.getVariableByName(args[1])
 //		System.out.println("file name is "+ filename);
@@ -49,12 +56,16 @@ public class Main {
 //		System.out.println(a);
 //		System.out.println(network);
 //		
+		System.out.println("The exact inference is ");
 		Inferencer exact = new EnumerationInferencer();
 		Distribution dist = exact.query(QueryVariable, a, network);
 		System.out.println(dist);
+		System.out.println();
 		
+		System.out.println("The Rejection sampling inference is ");
 		RejectionSamplingInferencer rej = new RejectionSamplingInferencer();
-		System.out.println(rej.rejectionSampling(QueryVariable, a, network, 10000000));
+		System.out.println(rej.rejectionSampling(QueryVariable, a, network, sampleSize));
+		System.out.println();
 	}
 
 }
