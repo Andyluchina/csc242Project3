@@ -71,7 +71,7 @@ public class Main {
 		
 		LikelihoodWeightingInferencer lwi = new LikelihoodWeightingInferencer();
 		//lwi.weightedSample(network, a);
-		
+		System.out.println("The Likelihood Weighting Inference is ");
 		System.out.println(lwi.LikelihoodWeighting(QueryVariable, a, network, sampleSize));
 		
 		
